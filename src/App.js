@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./page/home/Home";
+import { ContextReact, initialState, reducers } from "./context/store";
+import react from "react";
+const App = () => {
+  const [data, dispatch] = react.useReducer(reducers, initialState);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextReact.Provider value={{ data, dispatch }}>
+      <Home />
+    </ContextReact.Provider>
   );
-}
+};
 
 export default App;
